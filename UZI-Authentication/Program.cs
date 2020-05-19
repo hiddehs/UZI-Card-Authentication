@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Security;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Https;
 using Microsoft.Extensions.Configuration;
@@ -25,13 +27,22 @@ namespace UZI_Authentication
                     webBuilder.UseStartup<Startup>();
                     webBuilder.ConfigureKestrel(o =>
                     {
-                        o.ConfigureHttpsDefaults(o => 
-                            o.ClientCertificateMode = 
-                                ClientCertificateMode.RequireCertificate);
+                        o.ConfigureHttpsDefaults(o =>
+                        {
+                            o.ClientCertificateMode =
+                                ClientCertificateMode.RequireCertificate;
+                            o.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
+                            // o.AllowAnyClientCertificate();
+                            o.ClientCertificateValidation = (certificate2, chain, arg3) =>
+                            {
+                                Console.WriteLine(certificate2.SubjectName.Name);
+                                
+                                return true;
+                            };
+
+                        });
                     });
                 });
         }
-            // Host.CreateDefaultBuilder(args)
-            //     .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }
