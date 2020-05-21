@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using UZI_Authentication.Services;
 
 namespace UZI_Authentication
 {
@@ -25,22 +26,33 @@ namespace UZI_Authentication
         {
             services.AddAuthentication(CertificateAuthenticationDefaults.AuthenticationScheme).AddCertificate(options =>
                 {
-                    options.RevocationMode = X509RevocationMode.NoCheck;
-                    options.AllowedCertificateTypes = CertificateTypes.All;
-                    options.ValidateCertificateUse = false;
-                    options.Validate();
+                    options.RevocationMode = X509RevocationMode.Offline;
+                    options.RevocationFlag = X509RevocationFlag.EntireChain;
+                    
+                    options.AllowedCertificateTypes = CertificateTypes.Chained;
+                    options.ValidateCertificateUse = true;
+                    
                     
                     options.Events = new CertificateAuthenticationEvents
                     {
-                        OnAuthenticationFailed = context =>
-                        {
-                            // context.Fail("fail");
-                            context.Success();
-                            return Task.CompletedTask;
-                        },
                         OnCertificateValidated = context =>
                         {
-                            context.Success();
+                            var validationService = context.HttpContext.RequestServices.GetService<CertificateValidationService>();
+ 
+                            if (validationService.ValidateCertificate(context.ClientCertificate))
+                            {
+                                context.Success();
+                            }
+                            else
+                            {
+                                context.Fail("invalid cert");
+                            }
+ 
+                            return Task.CompletedTask;
+                        },
+                        OnAuthenticationFailed = context =>
+                        {
+                            context.Fail("invalid cert");
                             return Task.CompletedTask;
                         }
                     };
@@ -54,7 +66,7 @@ namespace UZI_Authentication
             app.UseRouting();
 
             app.UseAuthentication();
-            app.UseAuthorization();
+            // app.UseAuthorization();
             
             if (env.IsDevelopment())
             {

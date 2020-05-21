@@ -16,13 +16,17 @@ namespace UZI_Authentication.Controllers
     [Route("[controller]")]
     public class CertificateController : ControllerBase
     {
-
         // [Authorize]
-        public JsonResult Get()
+        public ActionResult Get()
         {
-            X509Certificate2 cert = new X509Certificate2(HttpContext.Connection.ClientCertificate);
+            if (HttpContext.Connection.ClientCertificate != null)
+            {
+                X509Certificate2 cert = new X509Certificate2(HttpContext.Connection.ClientCertificate);
 
-            return new JsonResult((new DefaultCertificateParser()).Parse(HttpContext.Connection.ClientCertificate));
+                return new JsonResult((new DefaultCertificateParser()).Parse(HttpContext.Connection.ClientCertificate));
+            }
+
+            return new StatusCodeResult(401);
         }
     }
 }
