@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -11,14 +14,15 @@ namespace UZI_Authentication.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class CertificateController : ControllerBase
     {
 
-        [Authorize]
+        // [Authorize]
         public JsonResult Get()
         {
-            var rng = new Random();
-            return new JsonResult(HttpContext.Connection.ClientCertificate);
+            X509Certificate2 cert = new X509Certificate2(HttpContext.Connection.ClientCertificate);
+
+            return new JsonResult((new DefaultCertificateParser()).Parse(HttpContext.Connection.ClientCertificate));
         }
     }
 }
