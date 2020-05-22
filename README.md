@@ -16,7 +16,7 @@ Install root CA for Zorverlener UZI-Cards (PassType=Z) located in Authentication
     dotnet build Authentication-Server && dotnet run --project Authentication-Server 
     ```
 
-3. Open client page `Authorization-Client/client_demo.html`
+3. Open client page `Authorization-Client/client_demo.html` or [this GitHub Page](https://hiddehs.github.io/UZI-Card-Authentication/Authentication-Client/client_demo.html)
 
 
 ## Todo
