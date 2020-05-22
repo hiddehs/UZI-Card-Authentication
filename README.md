@@ -1,6 +1,13 @@
 # UZI Card Authentication Server
 > 💳 dotnet core implementation for handling UZI Card Client Certificate authentication.
 
+
+### Preparation
+
+Install root CA for Zorverlener UZI-Cards (PassType=Z) located in AuthenticationServer/CertStorage and *enable Client Authentication*
+- macOS: Import certificate in Keychain Access, then drag certificate to System Roots
+- [Windows](https://www.sslsupportdesk.com/how-to-enable-or-disable-all-puposes-of-root-certificates-in-mmc/) 
+
 ## Usage
 
 1. Change JWT secret as described in `AuthenticationServer/launchSettings.json`
