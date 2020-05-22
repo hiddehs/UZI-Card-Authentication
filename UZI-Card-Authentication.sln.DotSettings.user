@@ -3,4 +3,5 @@
   &lt;Assembly Path="/Users/hidde/.nuget/packages/microsoft.aspnetcore.authentication.certificate/3.1.4/lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.Certificate.dll" /&gt;
   &lt;Assembly Path="/usr/local/share/dotnet/shared/Microsoft.AspNetCore.App/3.1.0/Microsoft.AspNetCore.Authentication.dll" /&gt;
   &lt;Assembly Path="/Users/hidde/.nuget/packages/system.identitymodel.tokens.jwt/5.5.0/lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll" /&gt;
-&lt;/AssemblyExplorer&gt;</s:String></wpf:ResourceDictionary>
+&lt;/AssemblyExplorer&gt;</s:String>
+	</wpf:ResourceDictionary>

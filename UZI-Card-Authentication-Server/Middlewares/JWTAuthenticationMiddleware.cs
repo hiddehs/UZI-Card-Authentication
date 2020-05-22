@@ -36,7 +36,7 @@ namespace UZI_Authentication.Middlewares
 
                 var mySecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secret));
 
-                var myIssuer = "UZI-Authentication-Node";
+                var myIssuer = "UZI-Card-Authentication-Node";
 
                 var tokenHandler = new JwtSecurityTokenHandler();
                 try
