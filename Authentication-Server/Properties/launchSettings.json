@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "UZI_Authentication": {
+    "UZI_Card_Authentication_Server": {
       "commandName": "Project",
       "launchBrowser": false,
       "launchUrl": "certificate",

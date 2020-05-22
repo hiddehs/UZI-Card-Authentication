@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UZI-Card-Authentication-Server", "UZI-Card-Authentication-Server\UZI-Card-Authentication-Server.csproj", "{184204EB-21AB-4229-B637-F418ADD7ACA5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication-Server", "Authentication-Server\Authentication-Server.csproj", "{184204EB-21AB-4229-B637-F418ADD7ACA5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
