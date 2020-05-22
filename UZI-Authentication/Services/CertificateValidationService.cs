@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
@@ -8,14 +9,10 @@ namespace UZI_Authentication.Services
     {
         public bool ValidateCertificate(X509Certificate2 clientCertificate)
         {
-            Console.WriteLine(clientCertificate.IssuerName);
-            Console.WriteLine("Validation Service Triggered");
-            // var cert = new X509Certificate2(Path.Combine("localhost_root_l1.pfx"), "1234");
-            // if (clientCertificate.Thumbprint == cert.Thumbprint)
-            // {
-                // return true;
-            // }
- 
+            // check rolcode
+            Dictionary<string, string> certificateParser = (new DefaultCertificateParser()).Parse(clientCertificate);
+            if(certificateParser != null && certificateParser["PassType"] == "Z")
+                return true;
             return false;
         }
     }
