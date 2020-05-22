@@ -59,6 +59,7 @@ namespace UZI_Authentication
                         {
                             o.ClientCertificateMode = ClientCertificateMode.RequireCertificate;
                         });
+                        
                     }).UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                             .ReadFrom.Configuration(hostingContext.Configuration)
                             .MinimumLevel.Override("Microsoft", LogEventLevel.Verbose)
