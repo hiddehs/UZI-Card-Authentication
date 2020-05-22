@@ -1,21 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Certificate;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Microsoft.Extensions.WebEncoders.Testing;
 using UZI_Authentication.Middlewares;
 using UZI_Authentication.Services;
 
@@ -24,7 +12,7 @@ namespace UZI_Authentication.Controllers
     [ApiController]
     [Route("[controller]")]
     [Authorize(AuthenticationSchemes = "Certificate")]
-    [MiddlewareFilter(typeof(JWTAuthenticationMiddlewareAttribute))]
+    // [MiddlewareFilter(typeof(JWTAuthenticationMiddlewareAttribute))] // Optional double JWT from client middleware
     public class CertificateController : ControllerBase
     {
         private IConfiguration _config;

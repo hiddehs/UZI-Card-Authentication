@@ -11,38 +11,39 @@ namespace UZI_Authentication
     {
         public Dictionary<string, string> Parse(X509Certificate2 certificate)
         {
-            Dictionary<string, string> dictionary1 = new Dictionary<string, string>();
+            Dictionary<string, string> certData = new Dictionary<string, string>();
             if (certificate == null)
-                return dictionary1;
+                return certData;
             DefaultCertificateParser.CertificateParser
                 certificateParser = new DefaultCertificateParser.CertificateParser(certificate);
-            dictionary1.Add("PassholderDescription", certificateParser.PassholderDescription);
-            dictionary1.Add("PassholderName", certificateParser.PassholderName);
-            dictionary1.Add("SubjectName", certificateParser.SubjectName);
-            dictionary1.Add("CommonName", certificateParser.CommonName);
-            dictionary1.Add("Title", certificateParser.Title);
-            dictionary1.Add("OrganizationName", certificateParser.OrganizationName);
-            dictionary1.Add("UziNumber", certificateParser.UziNumber);
-            dictionary1.Add("PassType", certificateParser.PassType.ToString());
-            Dictionary<string, string> dictionary2 = dictionary1;
+            certData.Add("PassholderDescription", certificateParser.PassholderDescription);
+            certData.Add("PassholderName", certificateParser.PassholderName);
+            certData.Add("SubjectName", certificateParser.SubjectName);
+            certData.Add("CommonName", certificateParser.CommonName);
+            certData.Add("Title", certificateParser.Title);
+            certData.Add("OrganizationName", certificateParser.OrganizationName);
+            certData.Add("UziNumber", certificateParser.UziNumber);
+            certData.Add("PassType", certificateParser.PassType.ToString());
+
             bool flag = certificateParser.IsValidUserPass;
             string str1 = flag.ToString();
-            dictionary2.Add("IsValidUserPass", str1);
-            Dictionary<string, string> dictionary3 = dictionary1;
+            certData.Add("IsValidUserPass", str1);
+
             flag = certificateParser.IsServerPass;
             string str2 = flag.ToString();
-            dictionary3.Add("IsServerPass", str2);
-            Dictionary<string, string> dictionary4 = dictionary1;
+            certData.Add("IsServerPass", str2);
+
             flag = certificateParser.IsAgbCodeSpecified;
             string str3 = flag.ToString();
-            dictionary4.Add("IsAgbCodeSpecified", str3);
-            dictionary1.Add("AgbCode", certificateParser.AgbCode);
-            dictionary1.Add("UziNumberOid", certificateParser.UziNumberOid);
-            dictionary1.Add("RoleCode", certificateParser.RoleCode);
-            dictionary1.Add("Role", certificateParser.Role);
-            dictionary1.Add("UziRegisterSubscriberNumber", certificateParser.UziRegisterSubscriberNumber);
-            dictionary1.Add("UziRegisterSubscriberOid", certificateParser.UziRegisterSubscriberOid);
-            return dictionary1;
+            
+            certData.Add("IsAgbCodeSpecified", str3);
+            certData.Add("AgbCode", certificateParser.AgbCode);
+            certData.Add("UziNumberOid", certificateParser.UziNumberOid);
+            certData.Add("RoleCode", certificateParser.RoleCode);
+            certData.Add("Role", certificateParser.Role);
+            certData.Add("UziRegisterSubscriberNumber", certificateParser.UziRegisterSubscriberNumber);
+            certData.Add("UziRegisterSubscriberOid", certificateParser.UziRegisterSubscriberOid);
+            return certData;
         }
 
         private sealed class CertificateParser

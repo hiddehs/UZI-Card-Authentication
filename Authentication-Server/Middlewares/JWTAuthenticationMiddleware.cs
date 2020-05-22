@@ -33,7 +33,6 @@ namespace UZI_Authentication.Middlewares
             {
                 string token = AuthenticationHeaderString.ToString().Split("Bearer ")[1];
 
-
                 var mySecurityKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_secret));
 
                 var myIssuer = "UZI-Card-Authentication-Node";

@@ -5,10 +5,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.Certificate;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,7 +24,6 @@ namespace UZI_Authentication
         }
 
         public IConfiguration Configuration { get; }
-        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<CertificateValidationService>();
@@ -78,13 +74,13 @@ namespace UZI_Authentication
                         }
                     };
                 });
-            services.AddRazorPages();
+            
             services.AddCors(options =>
             {
                 options.AddPolicy(name: "base",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:5000"); // DEMO CONFIGURATION
+                        builder.WithOrigins("null"); // DEMO CONFIGURATION
                         builder.WithHeaders("Authentication");
                     });
             });
@@ -108,7 +104,6 @@ namespace UZI_Authentication
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
-                endpoints.MapRazorPages();
             });
         }
     }

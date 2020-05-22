@@ -21,8 +21,8 @@
       <Content Include="..\Authentication-Client\client_demo.html">
         <Link>Authentication-Client\client_demo.html</Link>
       </Content>
-      <Content Include="..\Dockerfile">
-        <Link>Dockerfile</Link>
+      <Content Include="..\README.md">
+        <Link>README.md</Link>
       </Content>
       <Content Include="Client\client_demo.html" />
       <Content Remove="Client\**" />
