@@ -53,7 +53,7 @@ namespace UZI_Authentication
                 }).AddCertificate(options =>
                 {
                     options.AllowedCertificateTypes = CertificateTypes.Chained;
-                    options.RevocationMode = X509RevocationMode.NoCheck;
+                    options.RevocationMode = X509RevocationMode.NoCheck; // TODO: Troubleshoot Revocation errors
                     options.RevocationFlag = X509RevocationFlag.EntireChain;
                     
                     options.Events = new CertificateAuthenticationEvents
