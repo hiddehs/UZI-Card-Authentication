@@ -10,7 +10,7 @@ Install root CA for Zorverlener UZI-Cards (PassType=Z) located in Authentication
 
 ## Usage
 
-1. Change JWT secret as described in `AuthenticationServer/launchSettings.json`
+1. Change JWT secret as described in `AuthenticationServer/appsettings.json`
 2. Start server by running following commands in root of repo:
     ```bash
     dotnet build Authentication-Server && dotnet run --project Authentication-Server 
